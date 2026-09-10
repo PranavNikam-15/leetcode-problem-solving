@@ -1,0 +1,47 @@
+class Solution {
+
+    public boolean isPair(char ch, char top) {
+
+        if (ch == ')' && top == '(') {
+            return true;
+        } 
+        else if (ch == ']' && top == '[') {
+            return true;
+        }
+        else if (ch == '}' && top == '{') {
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean isValid(String s) {
+
+        Stack<Character> stack = new Stack<>();
+
+        for (int i = 0; i < s.length(); i++) {
+
+            char ch = s.charAt(i);
+
+            // Opening bracket
+            if (ch == '(' || ch == '[' || ch == '{') {
+                stack.push(ch);
+            }
+
+            // Closing bracket
+            else {
+
+                if (stack.isEmpty()) {
+                    return false;
+                }
+
+                char top = stack.pop();
+
+                if (!isPair(ch, top)) {
+                    return false;
+                }
+            }
+        }
+        return stack.isEmpty();
+    }
+}
