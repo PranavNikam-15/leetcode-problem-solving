@@ -15,34 +15,60 @@
  */
 
 
-// Iterative approach  
-
 class Solution {
     public List<Integer> preorderTraversal(TreeNode root) {
-        
-        List<Integer> list = new ArrayList<Integer>();
 
-        if(root == null) {
-            return list;
-        }
-
-        Stack<TreeNode> stack = new Stack<TreeNode>();
-        stack.push(root);
-
-        while(!stack.isEmpty()) {
-        
-            TreeNode node = stack.pop();
-            list.add(node.val);
-
-            if(node.right != null) {
-                stack.add(node.right);
-            }
-
-            if(node.left != null) {
-                stack.add(node.left);
-            }
-        }
+        List<Integer> list = new ArrayList<>();
+        traversePreorder(root, list);
 
         return list;
     }
+
+    public void traversePreorder(TreeNode root, List<Integer> list) {
+
+        if(root == null) {
+            return;
+        }
+
+        list.add(root.val);
+        traversePreorder(root.left, list);
+        traversePreorder(root.right, list);
+    }
 }
+
+
+
+/*
+    // Iterative approach  
+
+    class Solution {
+        public List<Integer> preorderTraversal(TreeNode root) {
+            
+            List<Integer> list = new ArrayList<Integer>();
+
+            if(root == null) {
+                return list;
+            }
+
+            Stack<TreeNode> stack = new Stack<TreeNode>();
+            stack.push(root);
+
+            while(!stack.isEmpty()) {
+            
+                TreeNode node = stack.pop();
+                list.add(node.val);
+
+                if(node.right != null) {
+                    stack.add(node.right);
+                }
+
+                if(node.left != null) {
+                    stack.add(node.left);
+                }
+            }
+
+            return list;
+        }
+    }
+
+*/  
