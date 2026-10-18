@@ -19,32 +19,52 @@ class Node {
 
 class Solution {
     public int maxDepth(Node root) {
-        
+
         if(root == null) {
             return 0;
         }
 
-        Queue<Node> q = new LinkedList<>();
-        q.offer(root);
-
         int depth = 0;
-
-        while(!q.isEmpty()) {
-
-            int size = q.size();
-
-            for(int i=0; i < size; i++) {
-
-                Node node = q.poll();
-
-                for(Node child : node.children) {
-                    q.offer(child);
-                }
-            }
-
-            depth++;
+        
+        for(Node child : root.children) {
+            depth = Math.max(depth, maxDepth(child));
         }
 
-        return depth;
+        return 1 + depth;
     }
 }
+
+
+/*
+    class Solution {
+        public int maxDepth(Node root) {
+            
+            if(root == null) {
+                return 0;
+            }
+
+            Queue<Node> q = new LinkedList<>();
+            q.offer(root);
+
+            int depth = 0;
+
+            while(!q.isEmpty()) {
+
+                int size = q.size();
+
+                for(int i=0; i < size; i++) {
+
+                    Node node = q.poll();
+
+                    for(Node child : node.children) {
+                        q.offer(child);
+                    }
+                }
+
+                depth++;
+            }
+
+            return depth;
+        }
+    }
+*/
