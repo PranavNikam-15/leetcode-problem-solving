@@ -1,21 +1,17 @@
 class Solution {
     public String toLowerCase(String s) {
 
-        StringBuilder result = new StringBuilder();
-        int i = 0;
+        StringBuilder result = new StringBuilder(s.length());
 
-        while(i < s.length()) {
+        for(int i=0; i < s.length(); i++) {
 
             char ch = s.charAt(i);
 
             if(ch >= 'A' && ch <= 'Z') {
-                result.append((char)(ch + 32));
-            } 
-            else {
-                result.append(ch);
+                ch = (char)(ch + 32);
             }
 
-            i++;
+            result.append(ch);
         }
 
         return result.toString();
